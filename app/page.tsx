@@ -6,87 +6,35 @@ import {useEffect, useState} from "react";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+    const [hoverSakib, setHoverSakib] = useState(false);
+    const [hoverCode, setHoverCode] = useState(false);
+    const [hoverPhoto, setHoverPhoto] = useState(false);
+    const [greeting, setGreeting] = useState("");
+    useEffect(() => {
+        const greetings = [
+            "Happy Holidays.",
+            "Hi.",
+            "How are you?",
+            "Welcome.",
+            "All systems online."
+        ];
+        const randomIndex = Math.floor(Math.random() * greetings.length);
+        setGreeting(greetings[randomIndex]);
+    }, [])
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
+    <main className={`${inter.className} sm:text-xl`}>
+        <div className={`w-full h-screen flex justify-center items-center italic transition ${greeting == "" ? "opacity-0" : "opacity-100"}`}>{greeting}</div>
+        <div className="p-2.5 absolute w-full bottom-2.5 grid grid-cols-3">
+          <a href="/" onMouseEnter={() => setHoverSakib(true)} onMouseLeave={() => setHoverSakib(false)} className="flex justify-center">
+              SAKIB{ hoverSakib && " RASUL"}
           </a>
+          <div onMouseEnter={() => setHoverCode(true)} onMouseLeave={() => setHoverCode(false)} className="flex justify-center opacity-50 cursor-not-allowed">
+              { !hoverCode ? "CODE" : "COMING SOON"}
+          </div>
+          <div onMouseEnter={() => setHoverPhoto(true)} onMouseLeave={() => setHoverPhoto(false)} className="flex justify-center opacity-50 cursor-not-allowed">
+              { !hoverPhoto ? "PHOTO" : "COMING SOON"}
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
   )
 }
