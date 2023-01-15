@@ -1,4 +1,5 @@
 import './globals.css'
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -13,6 +14,8 @@ export default function RootLayout({
       */}
       <head />
       <body>{children}</body>
+      <Script data-goatcounter="https://sakib.goatcounter.com/count"
+              async src="//gc.zgo.at/count.js"/>
     </html>
   )
 }
