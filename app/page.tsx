@@ -9,11 +9,12 @@ export default function Home() {
     const [greeting, setGreeting] = useState("");
     useEffect(() => {
         const greetings = [
-            "Happy Holidays.",
             "Hi.",
             "How are you?",
             "Welcome.",
-            "All systems online."
+            "All systems online.",
+            "Good day.",
+            "Hello."
         ];
         const randomIndex = Math.floor(Math.random() * greetings.length);
         setGreeting(greetings[randomIndex]);
